@@ -1,0 +1,23 @@
+{
+  "name": "seattle-bike-racks",
+  "version": "1.0.0",
+  "description": "An app providing a map of bike racks in Seattle",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdemichele/seattle-bike-racks.git"
+  },
+  "author": "Matthew DeMichele",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdemichele/seattle-bike-racks/issues"
+  },
+  "homepage": "https://github.com/mdemichele/seattle-bike-racks#readme",
+  "dependencies": {
+    "create-react-app": "^5.0.0",
+    "express.js": "^1.0.0"
+  }
+}

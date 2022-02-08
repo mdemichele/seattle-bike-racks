@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
@@ -13,15 +13,22 @@
   }
 }
 
+/* Header Styles */
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .App-link {
@@ -35,4 +42,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Bike Rack Map Styles */
+.bike-map {
+  width: 90%;
+  height: 600px;
 }

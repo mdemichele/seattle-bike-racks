@@ -1,11 +1,21 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-const Search = ({ searchCoordinates, setSearchCoordinates }) => {
-  const [address, setAddress] = useState("");
+const Search = ({ searchCoordinates, setSearchCoordinates, address, setAddress }) => {
   
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    alert("Got address: " + address);
+  
+    // Send the address to the backend 
+    let message = {
+      address: address
+    };
+    
+    // Get the lat/long back from backend 
+    const response = await axios.post("/forward-geocode", message);
+  
+    // Set lat/long as the coordinates state variable
+    setSearchCoordinates(response.data);
   };
   
   return (

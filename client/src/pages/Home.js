@@ -3,7 +3,8 @@ import Map from "../components/Map";
 import Search from "../components/Search";
 
 function HomePage() {
-  const [searchCoordinates, setSearchCoordinates] = useState("");
+  const [searchCoordinates, setSearchCoordinates] = useState({lon: -122.34, lat: 47.6062}); // Default long/lat of Seattle 
+  const [address, setAddress] = useState("");
   
   return (
     <div className="home-page">
@@ -14,11 +15,11 @@ function HomePage() {
       </div>
     
       {/* Search Bar */}
-      <Search searchCoordinates={searchCoordinates} setSearchCoordinates={setSearchCoordinates} />
+      <Search searchCoordinates={searchCoordinates} setSearchCoordinates={setSearchCoordinates} address={address} setAddress={setAddress}/>
       
       {/* Bike Rack Map */}
       <button className="refresh-button">Refresh Map</button>
-      <Map />
+      <Map searchCenter={searchCoordinates}/>
       
       {/* Teammate Microservice */}
       <div className="team-microservice-container">

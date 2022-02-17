@@ -8,16 +8,19 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
-import { Icon, Style } from 'ol/style';
+import { transform } from 'ol/proj';
+import { Icon, Style, Fill, Circle } from 'ol/style';
 import XYZ from 'ol/source/XYZ';
 import marker from './map-marker.png';
 import { defaults, ZoomSlider } from 'ol/control';
+import { fromLonLat } from 'ol/proj';
 
-const BikeMap = () => {
+const BikeMap = ({ searchCenter }) => {
   
   // Set initial state - used to track references to OpenLayers 
   const [map, setMap] = useState();
   const [featuresLayer, setFeaturesLayer] = useState();
+  const [zoom, setZoom] = useState(11);
   
   // Keep a ref to the map div element - OpenLayers will render into this div 
   const mapElement = useRef();
@@ -34,7 +37,6 @@ const BikeMap = () => {
         geometry: new Point([rack.long, rack.lat]),
         address: rack.address
       });
-      
       // Set Icon style 
       let iconStyle = new Style({
         image: new Icon({
@@ -42,15 +44,10 @@ const BikeMap = () => {
           src: marker
         })
       });
-      
       // Set style 
       currentIcon.setStyle(iconStyle);
-      
       return currentIcon;
-      
     });
-    
-    console.log(rackIcons);
     
     // Create vector source 
     const vectorSource = new VectorSource({
@@ -73,14 +70,10 @@ const BikeMap = () => {
       layers: [tileLayer, initialFeaturesLayer],
       view: new View({
         projection: 'EPSG:4326',
-        center: [-122.34, 47.6062],
-        zoom: 11
+        center: [searchCenter.lon, searchCenter.lat],
+        zoom: zoom
       }),
     });
-    
-    // Add zoom control 
-    const zoomSlider = new ZoomSlider();
-    initialMap.addControl(zoomSlider);
     
     // Save map and vector layer references to state 
     setMap(initialMap);
@@ -91,6 +84,48 @@ const BikeMap = () => {
     // Load the Map into the DOM 
     loadMap();
   }, []);
+  
+  useEffect(() => {
+    // Set the new zoom and new center if search term is entered  
+    if (searchCenter.lon != -122.34 && searchCenter.lat != 47.6062) {
+      // Set Zoom 
+      map.getView().setZoom(map.getView().getZoom() + 6);
+      // Set Center 
+      map.getView().setCenter([searchCenter.lon, searchCenter.lat]);
+      
+      // Add marker 
+      let centerMarker = new Feature({
+        geometry: new Point([searchCenter.lon, searchCenter.lat])
+      });
+      let markerStyle = new Style({
+        image: new Circle({
+          fill: new Fill({
+            color: [42, 84, 164, 0.7]
+          }),
+          radius: 12
+        })
+      });
+      // Style of the marker 
+      centerMarker.setStyle(markerStyle);
+      // Create a new vector source 
+      let vectorSource = new VectorSource({
+        features: [centerMarker]
+      });
+      
+      // Createa new vector layer 
+      let vectorLayer = new VectorLayer({
+        source: vectorSource
+      });
+      
+      map.addLayer(vectorLayer);
+      
+    } 
+    // Do nothing if no search term has been entered 
+    else {
+      return 
+    }
+    
+  }, [searchCenter]);
   
   return (
     <div ref={mapElement} className="bike-map">

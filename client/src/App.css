@@ -111,11 +111,47 @@
 /* Bike Rack Map Styles */
 .refresh-button {
   margin-bottom: 20px;
+  
 }
 .bike-map {
   width: 90%;
   height: 600px;
   margin: auto;
+}
+
+.ol-zoom {
+  display: flex;
+  flex-direction: column;
+  padding: 1% 1%;
+}
+
+.ol-zoom button {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 2px;
+  background: rgba(0, 60, 136,0.5);
+  border-radius: 2px 2px 0 0;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+}
+
+.ol-rotate {
+  display: none;
+}
+
+.ol-attribution {
+  position: absolute;
+  top: 92%;
+}
+
+.ol-attribution button {
+  display: none;
+}
+
+.ol-attribution ul li{
+  list-style: none;
+  font-size: 12px;
 }
 
 /* Graph of bike racks Style */

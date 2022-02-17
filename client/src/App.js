@@ -10,11 +10,21 @@ function App() {
       <BrowserRouter>
       {/* App Header */}
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className="App-header-title-container">
-          <Link to="/"><h3 className="App-header-title">Seattle Bike Rack Map</h3></Link>
+      
+        {/* Logo */}
+        <div className="App-header-logo-container">
+          <img src={logo} className="App-logo" alt="logo" />
         </div>
-        <Link className="App-link" to="add-rack">Add Bike Rack</Link>
+        
+        {/* Title */}
+        <div className="App-header-title-container">
+          <Link to="/" id="header-title"><h3 className="App-header-title">Seattle Bike Rack Map</h3></Link>
+        </div>
+        
+        {/* Link */}
+        <div className="App-header-link-container">
+          <Link className="App-link" to="add-rack">Add Bike Rack</Link>
+        </div>
       </header>
       
       {/* Define Routes */}

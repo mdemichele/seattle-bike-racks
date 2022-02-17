@@ -4,7 +4,8 @@
   "description": "An app providing a map of bike racks in Seattle",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,12 @@
   },
   "homepage": "https://github.com/mdemichele/seattle-bike-racks#readme",
   "dependencies": {
+    "axios": "^0.26.0",
+    "body-parser": "^1.19.2",
     "create-react-app": "^5.0.0",
-    "express.js": "^1.0.0"
+    "csv-parse": "^5.0.4",
+    "dotenv": "^16.0.0",
+    "express.js": "^1.0.0",
+    "nodemon": "^2.0.15"
   }
 }

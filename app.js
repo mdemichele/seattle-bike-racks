@@ -73,6 +73,9 @@ app.post('/forward-geocode', async (req, res) => {
   
 });
 
+// Receives a lat and long and delivers a url of a map 
+
+
 app.listen(8000, () => {
   console.log("Server listening. Get after it!");
 });

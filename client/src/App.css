@@ -173,3 +173,45 @@
   color: black;
   cursor: pointer;
 }
+
+/* Add New Bike Form */
+.add-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.form-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.form-label {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.form-input {
+  width: 60%;
+}
+
+.form-text {
+  width: 60%;
+}
+
+.form-submit:hover {
+  color: #282c34;
+  background: white;
+  border: 1px solid #282c34;
+  cursor: pointer;
+}

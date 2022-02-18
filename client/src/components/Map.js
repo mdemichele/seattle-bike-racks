@@ -11,6 +11,7 @@ import Point from 'ol/geom/Point';
 import { transform } from 'ol/proj';
 import { Icon, Style, Fill, Circle } from 'ol/style';
 import XYZ from 'ol/source/XYZ';
+import Overlay from 'ol/Overlay';
 import marker from './map-marker.png';
 import { defaults, ZoomSlider } from 'ol/control';
 import { fromLonLat } from 'ol/proj';
@@ -19,11 +20,16 @@ const BikeMap = ({ searchCenter }) => {
   
   // Set initial state - used to track references to OpenLayers 
   const [map, setMap] = useState();
+  const [popup, setPopup] = useState();
   const [featuresLayer, setFeaturesLayer] = useState();
   const [zoom, setZoom] = useState(11);
   
   // Keep a ref to the map div element - OpenLayers will render into this div 
   const mapElement = useRef();
+  const popupElement = useRef();
+  
+  const mapRef = useRef();
+  mapRef.current = map;
   
   // Function handles loading the map. It is called by useEffect at render time. 
   const loadMap = async () => {
@@ -75,10 +81,50 @@ const BikeMap = ({ searchCenter }) => {
       }),
     });
     
+    // Create Popup 
+    const popup = new Overlay({
+      element: popupElement.current,
+      positioning: 'bottom-center',
+      stopEvent: false,
+    });
+    setPopup(popup);
+    initialMap.addOverlay(popup);
+    
     // Save map and vector layer references to state 
     setMap(initialMap);
     setFeaturesLayer(initialFeaturesLayer);
+    
+    // Attach event handler 
+    initialMap.on('click', handleMapClick);
   };
+  
+  // Function handles map clicks: Shows a popup if a marker is clicked 
+  const handleMapClick = function(event) {
+    // Get the bike rack if it's been clicked 
+    const feature = mapRef.current.forEachFeatureAtPixel(event.pixel, function(feature) {
+      return feature;
+    });
+    
+    // If a brewery has been clicked...
+    if (feature) {
+      // Get the popup OpenLayers element 
+      let popupOverlay = event.map.overlays_.array_[0];
+      popupOverlay.element.style.display = "block";
+      // Set the position on the map of the popup 
+      popupOverlay.setPosition(event.coordinate);
+      
+      // Set the text to be the address of the bike rack 
+      popupOverlay.element.innerText = feature.get('address');
+      popupOverlay.element.style.background = 'white';
+      popupOverlay.element.style.padding = "10px";
+      
+    } 
+    // Remove the bike rack popup if somewhere else on the map is clicked 
+    else {
+      let popupOverlay = event.map.overlays_.array_[0];
+      popupOverlay.element.style.display = 'none';
+    }
+  }
   
   useEffect(() => {
     // Load the Map into the DOM 
@@ -93,23 +139,40 @@ const BikeMap = ({ searchCenter }) => {
       // Set Center 
       map.getView().setCenter([searchCenter.lon, searchCenter.lat]);
       
-      // Add marker 
-      let centerMarker = new Feature({
+      // Add marker for the radius 
+      let radiusMarker = new Feature({
         geometry: new Point([searchCenter.lon, searchCenter.lat])
       });
-      let markerStyle = new Style({
+      let markerStyle1 = new Style({
         image: new Circle({
           fill: new Fill({
-            color: [42, 84, 164, 0.7]
+            color: [42, 84, 164, 0.2]
           }),
-          radius: 12
+          radius: 300
         })
       });
       // Style of the marker 
-      centerMarker.setStyle(markerStyle);
+      radiusMarker.setStyle(markerStyle1);
+      
+      // Add marker for the center point 
+      let center = new Feature({
+        geometry: new Point([searchCenter.lon, searchCenter.lat])
+      });
+      
+      let markerStyle2 = new Style({
+        image: new Circle({
+          fill: new Fill({
+            color: [220, 69, 51, 1]
+          }),
+          radius: 8
+        })
+      });
+      // Style the center point 
+      center.setStyle(markerStyle2);
+      
       // Create a new vector source 
       let vectorSource = new VectorSource({
-        features: [centerMarker]
+        features: [radiusMarker, center]
       });
       
       // Createa new vector layer 
@@ -129,6 +192,7 @@ const BikeMap = ({ searchCenter }) => {
   
   return (
     <div ref={mapElement} className="bike-map">
+      <div ref={popupElement} className="popup"></div>
     </div>
   )
 }

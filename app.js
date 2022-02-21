@@ -74,7 +74,14 @@ app.post('/forward-geocode', async (req, res) => {
 });
 
 // Receives a lat and long and delivers a url of a map 
+app.post('/microservice', async (req, res) => {
+  let lat = req.body.lat;
+  let long = req.body.long;
+  
+  let url = `localhost:3000/microservice/map/${lat}&${long}`;
 
+  res.status(200).json({ url: url });
+});
 
 app.listen(8000, () => {
   console.log("Server listening. Get after it!");

@@ -215,3 +215,10 @@
   border: 1px solid #282c34;
   cursor: pointer;
 }
+
+/* Microservices Map */
+.microservice-map {
+  width: 90%;
+  height: 600px;
+  margin: auto;
+}

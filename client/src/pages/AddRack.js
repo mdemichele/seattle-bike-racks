@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
 
 function AddRackPage() {
   const [address, setAddress] = useState("");
@@ -12,6 +13,9 @@ function AddRackPage() {
   
   return (
     <div className="add-rack-page">
+    
+      {/* Header Area */}
+      <Header />
     
       <div className="add-title-container">
         <h3>Add A New Bike Rack</h3>

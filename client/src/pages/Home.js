@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Map from "../components/Map";
 import Search from "../components/Search";
+import Header from '../components/Header';
 
 function HomePage() {
   const [searchCoordinates, setSearchCoordinates] = useState({lon: -122.34, lat: 47.6062}); // Default long/lat of Seattle 
@@ -8,7 +9,9 @@ function HomePage() {
   
   return (
     <div className="home-page">
-    
+      {/* Header Area */}
+      <Header />
+      
       {/* Description Area */}
       <div className="description-container">
         <p className="description">Browse bike racks on the map below. You can click on each marker to get an address and specific details about each bike rack. You can also use the search bar to search for bike racks around a specific address.</p>

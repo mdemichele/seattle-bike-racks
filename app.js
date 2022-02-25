@@ -7,6 +7,8 @@ require("dotenv").config();
 
 const app = express();
 
+const port = process.env.PORT || 8000;
+
 app.use(bodyParser.json());
 
 // Position Stack access key 
@@ -200,6 +202,6 @@ app.get('/get-graph', async (req, res) => {
       });
 })
 
-app.listen(8000, () => {
-  console.log(`Server listening. Get after it! Port ${8000}`);
+app.listen(port, () => {
+  console.log(`Server listening. Get after it!`);
 });

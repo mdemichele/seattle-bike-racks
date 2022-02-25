@@ -202,6 +202,12 @@ app.get('/get-graph', async (req, res) => {
       });
 })
 
+
+// Handler for live deployment 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build.index.html'));
+})
+
 app.listen(port, () => {
   console.log(`Server listening. Get after it!`);
 });

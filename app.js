@@ -3,6 +3,7 @@ const { parse } = require('csv-parse');
 const fs = require("fs");
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const path = require('path');
 require("dotenv").config();
 
 const app = express();

@@ -12,6 +12,8 @@ const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 // Position Stack access key 
 const accessKey = process.env.ACCESS_KEY;
 

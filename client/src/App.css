@@ -222,3 +222,12 @@
   height: 600px;
   margin: auto;
 }
+
+/* Graph Button */
+button.team-microservice a {
+  color: white;
+}
+
+button.team-microservice a:hover {
+  color: blue;
+}

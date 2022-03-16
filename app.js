@@ -87,6 +87,22 @@ app.post('/microservice', async (req, res) => {
 });
 
 
+// Receives information for add new bike rack form 
+app.post("/add-new-bike-rack", (req, res) => {
+  let address = req.body.address;
+  let latitude = req.body.latitude;
+  let longitude = req.body.longitude;
+  
+  let bikeString = `${address}, ${latitude}, ${longitude}\n`;
+  
+  fs.appendFileSync('new-bike-racks.csv', bikeString, function (err) {
+    if (err) return console.log(err);
+  });
+  
+  res.status(200).json({message: "Added bike rack"});
+});
+
+
 // Calls carlos' microservice 
 app.get('/get-graph', async (req, res) => {
   // Declare a variable to skip the column label line

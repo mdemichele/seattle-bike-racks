@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import axios from 'axios';
 
 function AddRackPage() {
   const [address, setAddress] = useState("");
-  const [notes, setNotes] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
   
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     
-    alert("Not implemented yet");
+    let response = await axios.post("/add-new-bike-rack", {
+      address: address,
+      latitude: latitude,
+      longitude: longitude
+    });
+    
+    alert(response.data.message);
   }
   
   return (
@@ -31,10 +39,16 @@ function AddRackPage() {
             <input className="form-input" type="text" value={address} onChange={(event)=> { setAddress(event.target.value) }} />
           </div>
           
-          {/* Notes */}
+          {/* Latitude */}
           <div className="form-row">
-            <label className="form-label">Notes</label>
-            <textarea className="form-text" value={notes} rows="10" cols="100" onChange={(event) => {setNotes(event.target.value) }} />
+            <label className="form-label">Latitude</label>
+            <input className="form-input" type="text" value={latitude} onChange={(event) => { setLatitude(event.target.value) }} />
+          </div>
+          
+          {/* Longitude */}
+          <div className="form-row">
+            <label className="form-label">Longitude</label>
+            <input className="form-input" type="text" value={longitude} onChange={(event) => { setLongitude(event.target.value) }} />
           </div>
           
           {/* Submit */}

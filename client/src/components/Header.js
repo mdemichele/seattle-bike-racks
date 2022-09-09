@@ -1,4 +1,4 @@
-import logo from '../logo.svg';
+import bike from '../bike.svg';
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -7,7 +7,7 @@ function Header() {
     
       {/* Logo */}
       <div className="App-header-logo-container">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={bike} className="App-logo" alt="logo" />
       </div>
       
       {/* Title */}

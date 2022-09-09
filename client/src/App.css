@@ -60,6 +60,11 @@
   }
 }
 
+/* Home Page Styles */
+.home-page {
+  margin-bottom: 100px;
+}
+
 /* Description Styles */
 .description-container {
   padding: 5% 20% 0% 20%;
@@ -127,10 +132,21 @@
 }
 
 /* Bike Rack Map Styles */
-.refresh-button {
-  margin-bottom: 20px;
-  
+div.refresh-container {
+  margin-top: 20px;
 }
+
+a.refresh-button {
+  background: red;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
 .bike-map {
   width: 90%;
   height: 600px;

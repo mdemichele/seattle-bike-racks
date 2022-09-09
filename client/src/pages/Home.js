@@ -29,13 +29,16 @@ function HomePage() {
       <Search searchCoordinates={searchCoordinates} setSearchCoordinates={setSearchCoordinates} address={address} setAddress={setAddress}/>
       
       {/* Bike Rack Map */}
-      <button className="refresh-button"><a href="/">Refresh Map</a></button>
       <Map searchCenter={searchCoordinates}/>
       
-      {/* Teammate Microservice */}
-      <div className="team-microservice-container">
-        <button className="team-microservice"><a href={graph} target="_blank">See Graph of bike racks</a></button>
+      <div className="refresh-container">
+        <a className="refresh-button" href="/">Refresh Map</a>
       </div>
+      
+      {/* Teammate Microservice */}
+      {/* <div className="team-microservice-container">
+        <button className="team-microservice"><a href={graph} target="_blank">See Graph of bike racks</a></button>
+      </div> */}
     </div>
   )
 }

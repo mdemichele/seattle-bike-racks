@@ -23,8 +23,8 @@ const Search = ({ searchCoordinates, setSearchCoordinates, address, setAddress }
       <h3 className="search-title">Search By Address</h3>
       
       <form className="search-form" onSubmit={handleSubmit}>
-        <input name="address" className="form-input" placeholder="Enter Address" type="text" value={address} onChange={(event) => setAddress(event.target.value)}/>
-        <button type="submit" className="form-submit">Submit</button>
+          <input name="address" className="search-form-input" autocomplete="off" placeholder="Enter Address" type="text" value={address} onChange={(event) => setAddress(event.target.value)}/>
+          <button type="submit" className="search-form-submit">Submit</button>
       </form>
     </div>
   )

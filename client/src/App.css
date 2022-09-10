@@ -266,6 +266,91 @@ button.team-microservice a:hover {
   color: blue;
 }
 
+/* Login Page Styles */
+.login-body-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.login-card {
+  background: #282c34;
+  width: 20%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 80px 40px;
+  border-radius: 10px;
+}
+
+.login-profile {
+  height: 100px;
+  width: 100px;
+}
+
+.login-title-container {
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+.login-form-container {
+  width: 95%;
+  margin: auto;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.login-form-input {
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+.login-form-submit {
+  width: 100%;
+  padding: 10px 20px;
+  background: #3D4785;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-form-bottom-links {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: white;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+.login-form-bottom-links {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: white;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+a.login-bottom-links {
+  color: white;
+  text-decoration: none;
+}
+
 /* Register Page Styles */
 .register-body-container {
   width: 100%;
@@ -339,4 +424,31 @@ button.team-microservice a:hover {
 a.bottom-links {
   color: white;
   text-decoration: none;
+}
+
+/* Profile Page Styles */
+.profile-body-container {
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+}
+.profile-left-container {
+  width: 25%;
+}
+
+.profile-photo {
+  height: 200px;
+  width: 200px;
+}
+
+.profile-right-container {
+  width: 70%;
+}
+
+.profile-subheader-container {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
 }

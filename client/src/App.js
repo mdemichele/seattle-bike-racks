@@ -22,9 +22,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/add-rack" element={<AddRackPage />} />
           <Route path="/register" element={<RegisterPage setToken={setToken} />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage setToken={setToken} />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/microservice/map/:lat&:long" element={<Microservice />} />
         </Routes>
       </BrowserRouter>

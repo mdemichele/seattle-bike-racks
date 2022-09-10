@@ -1,14 +1,27 @@
-const express = require("express");
-const { parse } = require('csv-parse');
-const fs = require("fs");
-const bodyParser = require('body-parser');
-const axios = require('axios');
-const cors = require('cors');
+const express         = require("express");
+const { parse }       = require('csv-parse');
+const fs              = require("fs");
+const bodyParser      = require('body-parser');
+const axios           = require('axios');
+const cors            = require('cors');
+const mongoose        = require('mongoose');
+
 require("dotenv").config();
 
 const app = express();
 
 const port = process.env.PORT || 8000;
+
+// Connect to database 
+mongoose.connect('mongodb://localhost:27017/bikes', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+
+db.once("open", () => {
+  console.log("Successfully connected to MongoDB using Mongoose!");
+});
+
+// Models 
+const User = require('./models/user-model');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -20,7 +33,7 @@ const accessKey = process.env.ACCESS_KEY;
 app.get('/bike-racks', (req, res) => {
   // Inform the server console that the request has been received
   console.log("GET Request at /bike-racks has been received.");
-  process.stdout.write("Processing...");
+  console.log("Processing...");
   
   // Declare a variable to skip the column label line
   let skipFirstLine = false;
@@ -55,7 +68,7 @@ app.get('/bike-racks', (req, res) => {
         res.status(200).json(bikeRacks);
         
         // Write back to console
-        process.stdout.write("Done Processing");
+        console.log("Done Processing");
       })
 });
 
@@ -220,12 +233,98 @@ app.get('/get-graph', async (req, res) => {
       });
 });
 
-// Login method 
+// Register method 
 app.use('/register', async (req, res) => {
   console.log(req.body);
-  res.send({
-    token: 'test123',
-  });
+  
+  const username = req.body.username;
+  const password = req.body.password;
+  
+  // Add user to the database if they don't already exist 
+  const query = await User.findOne({ username: username }).exec(); 
+  
+  if (query == null) {
+    console.log("query was null ")
+    
+    const user = new User({ 
+      username: username, 
+    });
+    
+    salt = await user.makeSalt();
+    encryptedPassword = await user.encryptPassword(password, salt);
+    
+    user.hashed_password = encryptedPassword;
+    
+    user.save();
+    
+    console.log("Saved");
+    console.log(user.id);
+    
+    res.send({
+      token: user.id,
+    });
+  }
+  
+  // If user does already exist, return an error message 
+  else {
+    res.send({
+      token: null,
+      message: "Error. User already exists"
+    });
+  }
+  
+});
+
+// Login Method 
+app.post('/login', async (req, res) => {
+  console.log(req.body);
+  
+  const username = req.body.username;
+  const password = req.body.password;
+  
+  // Retrieve user from database if it exists 
+  const user = await User.findOne({ username: username }).exec();
+  
+  if (user) {
+    console.log("Found User");
+    // Check password 
+    const correctPassword = true;
+    
+    // If password is correct, return token 
+    if (correctPassword) {
+      console.log("Correct Password");
+      console.log(user.id);
+      res.send({
+        token: user.id,
+      });
+    } 
+    // If password is incorrect, return error message 
+    else {
+      res.send({
+        token: null,
+        message: "Error. Incorrect Username or Password",
+      })
+    }
+  } 
+  // If user doesn't exist, return and error 
+  else {
+    res.send({
+      token: null,
+      message: "Error. Incorrect Username or Password",
+    })
+  }
+  
+});
+
+// Get user information
+app.post('/user', async (req, res) => {
+  
+  const userId = req.body.userId;
+  console.log(userId);
+  const user = await User.findById(userId).exec();
+  
+  res.send(user);
+  
 });
 
 app.listen(port, () => {

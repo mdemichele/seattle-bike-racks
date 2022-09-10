@@ -20,11 +20,14 @@
   "dependencies": {
     "axios": "^0.26.0",
     "body-parser": "^1.19.2",
+    "connect-mongo": "^4.6.0",
     "create-react-app": "^5.0.0",
     "csv-parse": "^5.0.4",
     "dotenv": "^16.0.0",
     "express.js": "^1.0.0",
     "fetch": "^1.1.0",
+    "mongodb": "^4.9.1",
+    "mongoose": "^6.6.0",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {

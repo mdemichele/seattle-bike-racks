@@ -6,12 +6,13 @@ import useToken from '../components/useToken';
 function Header() {
   const { token, setToken } = useToken();
   const [status, setStatus] = useState("Register/Login");
-  const [statusLink, setStatusLink] = useState("register");
+  const [statusLink, setStatusLink] = useState("/register");
   
   useEffect(() => {
+    console.log(token);
     if (token) {
-      setStatus("Logout");
-      setStatusLink("logout");
+      setStatus("View Profile");
+      setStatusLink(`/profile/${token}`);
     }
   
   }, []);

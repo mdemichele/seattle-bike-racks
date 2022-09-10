@@ -16,7 +16,7 @@ function RegisterPage({ setToken }) {
     
     setToken(token);
     
-    alert(`Token: ${token}`);
+    alert(`Successfully registered.`);
   }
   
   async function registerUser(credentials) {
@@ -46,16 +46,16 @@ function RegisterPage({ setToken }) {
           {/* Register Form */}
           <div className="register-form-container">
             <form className="register-form" onSubmit={handleSubmit}>
-              <input name="username" className="register-form-input" placeholder="Username" type="text" value={username} onChange={(event) => setUsername(event.target.value)}/>
+              <input name="username" className="register-form-input" placeholder="Username" type="text" value={username} autoComplete="off" onChange={(event) => setUsername(event.target.value)}/>
           
-              <input name="password" className="register-form-input" placeholder="Password" type="text" value={password} onChange={(event) => setPassword(event.target.value)}/>
+              <input name="password" className="register-form-input" placeholder="Password" type="text" value={password} autoComplete="off" onChange={(event) => setPassword(event.target.value)}/>
           
               <button type="submit" className="register-form-submit">Register</button>
             </form>
             
             {/* Links */}
             <div className="form-bottom-links">
-              <a href="/" className="bottom-links">Login</a>
+              <a href="/login" className="bottom-links">Login</a>
               <a href="/" className="bottom-links">Forgot Password?</a>
             </div>
           </div>

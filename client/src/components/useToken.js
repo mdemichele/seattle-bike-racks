@@ -4,6 +4,11 @@ export default function useToken() {
 
   const getToken = () => {
     const tokenString = sessionStorage.getItem('token');
+    
+    if (!tokenString || tokenString == "undefined") {
+      return null;
+    }
+    
     const userToken = JSON.parse(tokenString);
     return userToken?.token
   }

@@ -48,7 +48,11 @@
 }
 
 .App-link {
-  color: #61dafb; 
+  /* color: #61dafb;  */
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 @keyframes App-logo-spin {
@@ -209,41 +213,63 @@ a.refresh-button {
 }
 
 /* Add New Bike Form */
+.add-title-container {
+  margin-top: 50px;
+}
 .add-form-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 .add-form {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  width: 60%;
 }
 
-.form-row {
+.add-form-row {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
   margin-bottom: 40px;
 }
 
-.form-label {
-  width: 30%;
+.add-form-label {
+  width: 10%;
   display: flex;
   justify-content: flex-start;
+  font-weight: 700;
 }
 
-.form-input {
-  width: 60%;
+.add-form-input {
+  width: 85%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #282c34;
+}
+
+.add-form-input:focus {
+  outline: none;
+  border-bottom: 1px solid lightblue;
 }
 
 .form-text {
   width: 60%;
 }
 
-.form-submit:hover {
+.add-form-submit {
+  color: white;
+  background: #282c34;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid #282c34;
+  font-weight: 700;
+}
+
+.add-form-submit:hover {
   color: #282c34;
   background: white;
   border: 1px solid #282c34;
@@ -264,6 +290,91 @@ button.team-microservice a {
 
 button.team-microservice a:hover {
   color: blue;
+}
+
+/* Login Page Styles */
+.login-body-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.login-card {
+  background: #282c34;
+  width: 20%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 80px 40px;
+  border-radius: 10px;
+}
+
+.login-profile {
+  height: 100px;
+  width: 100px;
+}
+
+.login-title-container {
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+.login-form-container {
+  width: 95%;
+  margin: auto;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.login-form-input {
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+.login-form-submit {
+  width: 100%;
+  padding: 10px 20px;
+  background: #3D4785;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-form-bottom-links {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: white;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+.login-form-bottom-links {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: white;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+a.login-bottom-links {
+  color: white;
+  text-decoration: none;
 }
 
 /* Register Page Styles */
@@ -339,4 +450,95 @@ button.team-microservice a:hover {
 a.bottom-links {
   color: white;
   text-decoration: none;
+}
+
+/* Profile Page Styles */
+.profile-body-container {
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+}
+.profile-left-container {
+  width: 25%;
+}
+
+.profile-photo {
+  height: 200px;
+  width: 200px;
+}
+
+.profile-buttons-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+  margin: auto;
+  align-items: center;
+}
+
+.profile-logout {
+  background: #CC87F7;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+}
+
+.profile-logout:hover {
+  background: #61dafb; 
+}
+
+.profile-right-container {
+  width: 70%;
+}
+
+.profile-add-rack {
+  background: #3d4785;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+}
+
+.profile-add-rack:hover {
+  background: #61dafb;
+}
+
+.profile-subheader-container {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.profile-bike-list {
+  text-align: left;
+  margin-top: 40px;
+}
+
+.profile-bike-container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.profile-bike-address {
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.profile-bike-delete {
+  padding: 10px 20px;
+  background: red;
+  border-radius: 50px;
+  color: white;
+  border: none;
+  margin-bottom: 10px;
+  font-weight: 700;
+  cursor: pointer;
 }

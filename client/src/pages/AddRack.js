@@ -33,7 +33,7 @@ function AddRackPage() {
       <Header />
     
       <div className="add-title-container">
-        <h3>Add A New Bike Rack</h3>
+        <h2>Add Bike Rack</h2>
       </div>
       
       {/* Add Bike Rack */}
@@ -41,25 +41,25 @@ function AddRackPage() {
         <form className="add-form" onSubmit={handleSubmit}>
         
           {/* Address */}
-          <div className="form-row">
-            <label className="form-label">Address</label>
-            <input className="form-input" type="text" value={address} onChange={(event)=> { setAddress(event.target.value) }} />
+          <div className="add-form-row">
+            <label className="add-form-label">Address</label>
+            <input className="add-form-input" type="text" value={address} autoComplete="off" onChange={(event)=> { setAddress(event.target.value) }} />
           </div>
           
           {/* Latitude */}
-          <div className="form-row">
-            <label className="form-label">Latitude</label>
-            <input className="form-input" type="text" value={latitude} onChange={(event) => { setLatitude(event.target.value) }} />
+          <div className="add-form-row">
+            <label className="add-form-label">Latitude</label>
+            <input className="add-form-input" type="text" value={latitude} autoComplete="off" onChange={(event) => { setLatitude(event.target.value) }} />
           </div>
           
           {/* Longitude */}
-          <div className="form-row">
-            <label className="form-label">Longitude</label>
-            <input className="form-input" type="text" value={longitude} onChange={(event) => { setLongitude(event.target.value) }} />
+          <div className="add-form-row">
+            <label className="add-form-label">Longitude</label>
+            <input className="add-form-input" type="text" value={longitude} onChange={(event) => { setLongitude(event.target.value) }} />
           </div>
           
           {/* Submit */}
-          <button type="submit" className="form-submit">Submit</button>
+          <button type="submit" className="add-form-submit">Submit</button>
         </form>
       </div>
       

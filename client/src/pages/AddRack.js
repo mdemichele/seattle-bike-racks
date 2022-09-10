@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import RegisterPage from '../pages/Register';
 import axios from 'axios';
+import useToken from '../components/useToken';
 
 function AddRackPage() {
   const [address, setAddress] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  const { token, setToken } = useToken();
   
   async function handleSubmit(event) {
     event.preventDefault();
@@ -17,6 +20,10 @@ function AddRackPage() {
     });
     
     alert(response.data.message);
+  }
+  
+  if (!token) {
+    return <RegisterPage setToken={setToken} />
   }
   
   return (

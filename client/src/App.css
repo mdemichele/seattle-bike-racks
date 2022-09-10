@@ -265,3 +265,78 @@ button.team-microservice a {
 button.team-microservice a:hover {
   color: blue;
 }
+
+/* Register Page Styles */
+.register-body-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.register-card {
+  background: #282c34;
+  width: 20%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 80px 40px;
+  border-radius: 10px;
+}
+
+.register-title-container {
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+.register-profile {
+  height: 100px;
+  width: 100px;
+}
+
+.register-form-container {
+  width: 95%;
+  margin: auto;
+}
+
+.register-form {
+  width: 100%;
+}
+
+.register-form-input {
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+.register-form-submit {
+  width: 100%;
+  padding: 10px 20px;
+  background: #3D4785;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-bottom-links {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: white;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+a.bottom-links {
+  color: white;
+  text-decoration: none;
+}

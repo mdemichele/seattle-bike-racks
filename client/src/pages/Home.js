@@ -8,12 +8,12 @@ import axios from 'axios';
 function HomePage() {
   const [searchCoordinates, setSearchCoordinates] = useState({lon: -122.34, lat: 47.6062}); // Default long/lat of Seattle 
   const [address, setAddress] = useState("");
-  const [graph, setGraph] = useState("");
+  // const [graph, setGraph] = useState("");
   
-  useEffect(async () => {
-    const response = await axios.get("/get-graph");
-    setGraph(response.data.url);
-  });
+  // useEffect(async () => {
+  //   // const response = await axios.get("/get-graph");
+  //   // setGraph(response.data.url);
+  // });
   
   return (
     <div className="home-page">

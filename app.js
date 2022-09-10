@@ -233,6 +233,7 @@ app.get('/get-graph', async (req, res) => {
       });
 });
 
+
 // Register method 
 app.use('/register', async (req, res) => {
   console.log(req.body);
@@ -275,6 +276,7 @@ app.use('/register', async (req, res) => {
   
 });
 
+
 // Login Method 
 app.post('/login', async (req, res) => {
   console.log(req.body);
@@ -316,12 +318,49 @@ app.post('/login', async (req, res) => {
   
 });
 
+
 // Get user information
 app.post('/user', async (req, res) => {
-  
+  console.log("Get user information");
   const userId = req.body.userId;
-  console.log(userId);
   const user = await User.findById(userId).exec();
+  
+  res.send(user);
+  
+});
+
+
+// Add bike rack 
+app.post('/add-favorite', async (req, res) => {
+  const userId = req.body.userId;
+  const address = req.body.address;
+  
+  // Add address to user instance
+  const user = await User.findById(userId).exec();
+  user.bikes.push(address);
+  user.save()
+  
+  res.send(user);
+  
+});
+
+
+// Delete bike rack 
+app.post('/delete-favorite', async (req, res) => {
+  const userId = req.body.userId;
+  const address = req.body.bikeRack;
+  
+  // Get user from database 
+  const user = await User.findById(userId).exec();
+  
+  // filter function 
+  function removeAddress(bike) {
+    return bike != address;
+  }
+  
+  const filteredBikes = user.bikes.filter(removeAddress);
+  user.bikes = filteredBikes;
+  user.save()
   
   res.send(user);
   

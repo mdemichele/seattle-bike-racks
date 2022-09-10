@@ -9,7 +9,6 @@ function Header() {
   const [statusLink, setStatusLink] = useState("/register");
   
   useEffect(() => {
-    console.log(token);
     if (token) {
       setStatus("View Profile");
       setStatusLink(`/profile/${token}`);

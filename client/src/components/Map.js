@@ -15,6 +15,9 @@ import Overlay from 'ol/Overlay';
 import marker from './map-marker.png';
 import { defaults, ZoomSlider } from 'ol/control';
 import { fromLonLat } from 'ol/proj';
+import heart from '../heart.svg';
+import heartFull from '../heart-full.svg';
+import useToken from '../components/useToken';
 
 const BikeMap = ({ searchCenter }) => {
   
@@ -23,6 +26,9 @@ const BikeMap = ({ searchCenter }) => {
   const [popup, setPopup] = useState();
   const [featuresLayer, setFeaturesLayer] = useState();
   const [zoom, setZoom] = useState(11);
+  
+  // Used for favorites 
+  const { token, setToken } = useToken();
   
   // Keep a ref to the map div element - OpenLayers will render into this div 
   const mapElement = useRef();
@@ -98,6 +104,16 @@ const BikeMap = ({ searchCenter }) => {
     initialMap.on('click', handleMapClick);
   };
   
+  // Add a favorite bike rack to the database 
+  const addFavorite = async (address) => {
+    let response = await axios.post('/add-favorite', {
+      address: address,
+      userId: token,
+    });
+    
+    alert("Added Favorite!");
+  }
+  
   // Function handles map clicks: Shows a popup if a marker is clicked 
   const handleMapClick = function(event) {
     // Get the bike rack if it's been clicked 
@@ -105,24 +121,70 @@ const BikeMap = ({ searchCenter }) => {
       return feature;
     });
     
-    // If a brewery has been clicked...
+    // If a bike rack has been clicked...
     if (feature) {
-      // Get the popup OpenLayers element 
-      let popupOverlay = event.map.overlays_.array_[0];
-      popupOverlay.element.style.display = "block";
-      // Set the position on the map of the popup 
-      popupOverlay.setPosition(event.coordinate);
+      // Get the popup OpenLayers element
+      const popupOverlay = event.map.overlays_.array_[0];
       
-      // Set the text to be the address of the bike rack 
-      popupOverlay.element.innerText = feature.get('address');
-      popupOverlay.element.style.background = 'white';
-      popupOverlay.element.style.padding = "10px";
+      // If a bike rack's details are already open, user can heart the bike rack 
+      if (popupOverlay.element.childElementCount > 1) {
+        const favIcon = document.getElementById('favorite-icon');
+        favIcon.setAttribute('src', heartFull);
+        
+        // Add bike rack to the user's favorites
+        let favoriteAddress = feature.get('address');
+        addFavorite(favoriteAddress);
+      
+      }
+      else {
+        
+        popupOverlay.element.style.display = "block";
+        // Set the position on the map of the popup 
+        popupOverlay.setPosition(event.coordinate);
+        
+        // Set the text to be the address of the bike rack 
+        // popupOverlay.element.innerText = feature.get('address');
+        // popupOverlay.element.style.background = 'white';
+        // popupOverlay.element.style.padding = "10px";
+        
+        // Create favorite icon 
+        const favIcon = document.createElement("img");
+        favIcon.id = "favorite-icon";
+        favIcon.setAttribute('src', heart);
+        favIcon.setAttribute('height', '20px');
+        favIcon.setAttribute('width', '20px');
+        
+        // Add favorite icon to favorite div 
+        const favDiv = document.createElement("div");
+        favDiv.appendChild(favIcon);
+        favDiv.style.background = 'white';
+        favDiv.style.padding = '10px';
+        favDiv.style.display = 'flex';
+        favDiv.style.justifyContent = 'right';
+        
+        // Create Address div
+        const addressDiv = document.createElement("div");
+        const addressContent = document.createTextNode(feature.get('address'));
+        addressDiv.appendChild(addressContent);
+        addressDiv.style.background = 'white';
+        addressDiv.style.padding = '10px';
+        
+        // Add both address div and favorite div to popupOverlay
+        popupOverlay.element.appendChild(addressDiv);
+        popupOverlay.element.appendChild(favDiv);
+        popupOverlay.element.style.display = 'flex';
+      }
       
     } 
     // Remove the bike rack popup if somewhere else on the map is clicked 
     else {
       let popupOverlay = event.map.overlays_.array_[0];
       popupOverlay.element.style.display = 'none';
+      if (popupOverlay.element.childElementCount > 1) {
+        console.log(popupOverlay.element.childElementCount);
+        popupOverlay.element.removeChild(popupOverlay.element.children[1]);
+        popupOverlay.element.removeChild(popupOverlay.element.children[1]);
+      }
     }
   }
   

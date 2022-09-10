@@ -1,7 +1,21 @@
 import bike from '../bike.svg';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import useToken from '../components/useToken';
 
 function Header() {
+  const { token, setToken } = useToken();
+  const [status, setStatus] = useState("Register/Login");
+  const [statusLink, setStatusLink] = useState("register");
+  
+  useEffect(() => {
+    if (token) {
+      setStatus("Logout");
+      setStatusLink("logout");
+    }
+  
+  }, []);
+  
   return (
     <header className="App-header">
     
@@ -17,7 +31,8 @@ function Header() {
       
       {/* Link */}
       <div className="App-header-link-container">
-        <Link className="App-link" to="add-rack">Add Bike Rack</Link>
+        {/* <Link className="App-link" to="add-rack">Add Bike Rack</Link> */}
+        <Link className="App-link" to={statusLink}>{status}</Link>
       </div>
       
     </header>

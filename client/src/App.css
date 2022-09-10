@@ -60,6 +60,11 @@
   }
 }
 
+/* Home Page Styles */
+.home-page {
+  margin-bottom: 100px;
+}
+
 /* Description Styles */
 .description-container {
   padding: 5% 20% 0% 20%;
@@ -95,26 +100,53 @@
   justify-content: space-between;
 }
 
-.form-input {
-  width: 75%;
+.search-form-input {
+  width: 70%;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #E0E0E0;
+  font-size: 14px;
   padding: 10px;
 }
 
-.form-submit {
+.search-form-input:focus {
+  outline: none;
+  border-bottom: 1px solid #282c34;
+  opacity: 0.8;
+}
+
+.search-form-submit {
   width: 25%;
   padding: 10px;
-  border: none;
+  border: 1px solid #282c34;
   background: #282c34;
+  font-size: 14px;
+  text-transform: uppercase;
   color: white;
 }
 
-/* Bike Rack Map Styles */
-.refresh-button {
-  margin-bottom: 20px;
-  
+.search-form-submit:hover {
+  color: #282c34;
+  background: white;
+  border: 1px solid #282c34;
+  cursor: pointer;
 }
+
+/* Bike Rack Map Styles */
+div.refresh-container {
+  margin-top: 20px;
+}
+
+a.refresh-button {
+  background: red;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
 .bike-map {
   width: 90%;
   height: 600px;
@@ -232,4 +264,79 @@ button.team-microservice a {
 
 button.team-microservice a:hover {
   color: blue;
+}
+
+/* Register Page Styles */
+.register-body-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.register-card {
+  background: #282c34;
+  width: 20%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 80px 40px;
+  border-radius: 10px;
+}
+
+.register-title-container {
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+.register-profile {
+  height: 100px;
+  width: 100px;
+}
+
+.register-form-container {
+  width: 95%;
+  margin: auto;
+}
+
+.register-form {
+  width: 100%;
+}
+
+.register-form-input {
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+.register-form-submit {
+  width: 100%;
+  padding: 10px 20px;
+  background: #3D4785;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-bottom-links {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: white;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+a.bottom-links {
+  color: white;
+  text-decoration: none;
 }

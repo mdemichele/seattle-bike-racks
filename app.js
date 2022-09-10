@@ -3,6 +3,7 @@ const { parse } = require('csv-parse');
 const fs = require("fs");
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const cors = require('cors');
 require("dotenv").config();
 
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 // Position Stack access key 
 const accessKey = process.env.ACCESS_KEY;
@@ -216,7 +218,15 @@ app.get('/get-graph', async (req, res) => {
         
         res.status(200).json({url: val.graph_url });
       });
-})
+});
+
+// Login method 
+app.use('/register', async (req, res) => {
+  console.log(req.body);
+  res.send({
+    token: 'test123',
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server listening. Get after it!`);

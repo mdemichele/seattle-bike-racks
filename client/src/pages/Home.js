@@ -8,12 +8,12 @@ import axios from 'axios';
 function HomePage() {
   const [searchCoordinates, setSearchCoordinates] = useState({lon: -122.34, lat: 47.6062}); // Default long/lat of Seattle 
   const [address, setAddress] = useState("");
-  const [graph, setGraph] = useState("");
+  // const [graph, setGraph] = useState("");
   
-  useEffect(async () => {
-    const response = await axios.get("/get-graph");
-    setGraph(response.data.url);
-  });
+  // useEffect(async () => {
+  //   // const response = await axios.get("/get-graph");
+  //   // setGraph(response.data.url);
+  // });
   
   return (
     <div className="home-page">
@@ -29,13 +29,16 @@ function HomePage() {
       <Search searchCoordinates={searchCoordinates} setSearchCoordinates={setSearchCoordinates} address={address} setAddress={setAddress}/>
       
       {/* Bike Rack Map */}
-      <button className="refresh-button"><a href="/">Refresh Map</a></button>
       <Map searchCenter={searchCoordinates}/>
       
-      {/* Teammate Microservice */}
-      <div className="team-microservice-container">
-        <button className="team-microservice"><a href={graph} target="_blank">See Graph of bike racks</a></button>
+      <div className="refresh-container">
+        <a className="refresh-button" href="/">Refresh Map</a>
       </div>
+      
+      {/* Teammate Microservice */}
+      {/* <div className="team-microservice-container">
+        <button className="team-microservice"><a href={graph} target="_blank">See Graph of bike racks</a></button>
+      </div> */}
     </div>
   )
 }

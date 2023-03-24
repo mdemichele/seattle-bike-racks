@@ -8,6 +8,8 @@ To get all of the necessary packages, run `npm ci` in the root directory of the 
 
 Next, you'll need to add a few environment variables. To do so, add a `.env` file in the root directory of the application. This `.env` file will house all of the environment specific variables of the project. It uses a npm library called dotenv, whose documentation can be found [here](https://www.npmjs.com/package/dotenv). 
 
+You'll also need to generate an access key from [LocationIQ](https://us1.locationiq.com/). Login and create an access key through their dashboard. *More instructions coming on this*
+
 # Architecture
 I decided to build this app with a React app front-end and a Node.js/Express.js backend. The purpose of breaking the app into a separate front-end and back-end is so that I could support a Microservices Architecture. I allowed for a Microservices architecture by providing individual backend endpoints for each specific service needed on the front-end. 
 

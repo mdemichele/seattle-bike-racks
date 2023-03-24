@@ -13,12 +13,12 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 // Connect to database 
-mongoose.connect('mongodb://localhost:27017/bikes', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://localhost:27017/bikes', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
-db.once("open", () => {
-  console.log("Successfully connected to MongoDB using Mongoose!");
-});
+//db.once("open", () => {
+  //console.log("Successfully connected to MongoDB using Mongoose!");
+//});
 
 // Models 
 const User = require('./models/user-model');
